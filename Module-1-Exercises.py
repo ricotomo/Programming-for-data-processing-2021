@@ -73,3 +73,21 @@ print("The number of dots is: " + str(len(dots)))
 
 #Create a program for printing
 #see slide 8
+
+maxstars = int(9)
+spacestring = ""
+starstring = ""
+
+for x in range(maxstars):
+    if x % 2 != 0: 
+
+        iteration = int(x)
+        helper = int((maxstars-iteration)/2)
+
+        for x in range(iteration):
+            starstring = starstring + "*"
+        for x in range(helper):
+            spacestring = spacestring+" "
+        print (spacestring + starstring + spacestring)
+        spacestring=""
+        starstring=""
