@@ -68,8 +68,22 @@ print("The number of dots is: " + str(len(dots)))
 #You are given the following DNA sequence:
 # A   A   A   C   G   C   T   G   T   C   A   A   T   A   C   A   A   T   C   T   T   Y   C   T   A   G   A   T   A   T   T   C   G   G   A   T   T   T   G   A   AT   T   T   T   G   C   A   A   A   A   A   G   T   C   C   G   A   A   G   C   T   G   C   C   C   A   C   C   T   C   A   A   G   T   C   A   T   T   G   T   TT   C   A   A   C   T   C   G   C   T   T   A   C   G   G   T   A   T   A   T   A   T   A   T   C   T   A   C   T   T   T   C   A   T   T   G   A   G   A   T   AT   A   A   A   C   A   G   C   G   C   T   G   A   T   A   C   A   A   T   C   T   T   T   T   T   A   T   A   T   A   A   G   T   C   T   T   T   T   G   T   AC   A   A   A   T   A   A   A   G   C   T   A   G   G   A   A   A   A   G   C   C   C   G   A   C   G   T   C   A   T   T   A   T   A   G   C   T   A   TAn imaginary restriction enzyme cuts in "AAGTCA" findwhere in the previous sequence this enzyme will cut
 
+dna_1 = "AAACGCTGTCAATACAATCTTYCTAGATATTCGGATTTGAATTTTGCAAAAAGTCCGAAGCTGCCCACCTCAAGTCATTGTTTCAACTCGCTTACGGTATATATATCTACTTTCATTGAGATATAAACAGCGCTGATACAATCTTTTTATATAAGTCTTTTGTACAAATAAAGCTAGGAAAAGCCCGACGTCATTATAGCTAT"
+
+sequenceIndex = dna_1.find("AAGTCA", 0, len(dna_1))
+print("The index of the sequence is: ")
+print(sequenceIndex)
+
 #You are given the following DNA sequence:
 # A   A   A   C   G   C   T   G   T   C   A   A   T   A   C   A   A   T   C   T   T   Y   C   T   A   G   A   T   A   T   T   C   G   G   A   T   T   T   G   A   A   TT  T  T  G  C  A  A  A  Awrite a loop that will split the above sequence in tripletsand print them?
+
+dna_2 = "AAACGCTGTCAATACAATCTTYCTAGATATTCGGATTTGAATTTTGCAAAA"
+
+for i in range(0, len(dna_2), 3):
+    print("The DNA sequence in triplets:")
+    print(i+1, "-", i+3) # The nummerator starts at 0, for us it is easier to read from 1
+    print (dna_2[i], dna_2[i+1], dna_2[i+2])
+
 
 #Create a program for printing
 #see slide 8
