@@ -24,5 +24,12 @@ def readSentence():
             "We're sorry a word you used isnt in our dictionary"
             break
     return spanishstr
+def translate (ls : list):
+    spanishwords = []
+    for x in ls:
+        spanishwords.append(bilingual[x])
+    return spanishwords
 
 print(readSentence())
+
+print(translate(ls=["christmas", "new", "happy"]))
