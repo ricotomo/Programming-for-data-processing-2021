@@ -65,7 +65,7 @@ def prettyPrint(tree):
     right = get_right(tree)
     print('{}{}{}{}'.format(' '*((width-2*2)//5), left, ' '*((width-2*2)*3//5), right, ' '*((width-2*2)//5)))
 
-    # # depth 2
+    # depth 2
     print_arrows(width, 2)
     left = get_left(tree['left'])
     right = get_right(tree['left'])
