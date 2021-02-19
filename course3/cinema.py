@@ -20,9 +20,10 @@ class Spectator:
 class Seat:
     # TODO
 
-    row = None
-    col = None
-    spec = None
+    def __init__(self, row:int, col:int, spec: Spectator) -> None:
+        self.row = row
+        self.col = col
+        self.spec = spec
 
     def __repr__(self):
         return '[{}, {}]'.format(self.row, self.col)
