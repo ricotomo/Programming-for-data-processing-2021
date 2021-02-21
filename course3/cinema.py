@@ -1,3 +1,4 @@
+import random
 
 class Film:
 
@@ -36,28 +37,43 @@ class Cinema:
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.film = film
-
-        # #code not working yet. 
-        # #My idea was to instantiate an empty multidemensional list and then fill it with seat objects
-        # self.seats = [[None] * num_cols for i in range(num_rows)]
-
-        # #initialize seats as empty and then update seats which are filled
-        # for j in range(num_rows):
-        #     for i in range(num_rows):
-        #         print("row is " + str(j) + " col num is " +str(i))
-        #         self.seats[j][i] = Seat(j,i)
+        self.seats = [[0]*num_cols for _ in [0]*num_rows]
+        for j in range(num_cols):
+            for i in range(num_rows):
+                self.seats[i][j] = Seat(i, j, None)
 
     def allocateSpectators(self, spectatorList: [Spectator]):
-        # TODO
+        
+        numberOfAvailableSeats = 0
+        for j in range(self.num_cols):
+            for i in range(self.num_rows):
+                numberOfAvailableSeats += self.seats[i][j].occupied == False
+        if (numberOfAvailableSeats < len(spectatorList)):
+            return
+        filterAge = list(filter(lambda x : x.age > self.film.min_age, spectatorList))
+        filterMoney = list(filter(lambda x : x.money > self.film.price, spectatorList))
+        numberOfSeatedSpeactors = 0
+        while numberOfSeatedSpeactors <= len(filterMoney):
+            randomCol = random.randint(0, self.num_cols - 1)
+            randomRow = random.randint(0, self.num_rows -1)
+            if (self.seats[randomRow][randomCol].occupied == False): 
+                self.seats[randomRow][randomCol].occupied = True
+                self.seats[randomRow][randomCol].spec = filterMoney[len(filterMoney)-1]
+                filterMoney.pop()
+                numberOfSeatedSpeactors += 1
         pass
 
     def getAllocatedSpectators(self):
+        return 
         # TODO
         pass
 
     def showSeats(self):
         # TODO
 
+        # for j in range(self.num_cols):
+        #     for i in range(self.num_rows):
+        #         print(self.seats[i][j].occupied, i, j)
         #prints the screen in terminal
         stars=""
         centered_text = self.num_cols*4//2-3
