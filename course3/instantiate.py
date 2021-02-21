@@ -14,6 +14,6 @@ spectators = [Mo, Lena, Tim, Soo]
 Cine_Dore = cinema.Cinema(num_rows=4, num_cols=15, film=nowShowing)
 
 Cine_Dore.allocateSpectators(spectators)
-
+print(Cine_Dore.getAllocatedSpectators())
 #Cine_Dore.getAllocatedSpectators()
 Cine_Dore.showSeats()

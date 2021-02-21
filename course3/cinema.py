@@ -64,9 +64,12 @@ class Cinema:
         pass
 
     def getAllocatedSpectators(self):
-        return 
-        # TODO
-        pass
+        spectators = []
+        for j in range(self.num_cols):
+            for i in range(self.num_rows):
+                if self.seats[i][j].occupied == True:
+                    spectators.append(self.seats[i][j].spec.id)
+        return spectators
 
     def showSeats(self):
         # TODO
