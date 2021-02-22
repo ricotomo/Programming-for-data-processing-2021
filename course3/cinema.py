@@ -28,7 +28,7 @@ class Seat:
         self.occupied = False if spec is None else True
 
     def __repr__(self):
-        return '[{}, {}]'.format(self.row, self.col)
+        return '[{}, {}]'.format((self.row+1), (self.col+1))
 
 
 class Cinema:
@@ -79,22 +79,37 @@ class Cinema:
         #         print(self.seats[i][j].occupied, i, j)
         #prints the screen in terminal
         stars=""
-        centered_text = self.num_cols*4//2-3
+        centered_text = self.num_cols*6//2-5
         centered_spaces = ""
 
         for x in range(self.num_cols):
-            stars = stars + "****"
+            if x < 10:
+                stars = stars + "******"
+            else:
+                stars = stars + "*******"
+
+        centered_text = len(stars)//2-5
+        centered_spaces = ""
         for x in range(centered_text):
             centered_spaces = centered_spaces + " "
 
         print(stars)
-        print(centered_spaces + "screen")
+        print("*" + centered_spaces + "screen" + centered_spaces + "   *")
         print(stars)
 
+        for j in range(self.num_rows):
+            print("\n")
+            for i in range(self.num_cols):
+                if self.seats[j][i].occupied == True:
+                    print("[*S," + str(self.seats[j][i].spec.id) + "]", end = '')
+                else:
+                    print(self.seats[j][i], end = '')
+        pass
+
+    
         # for j in range(self.num_rows):
         #     print("\n")
         #     for i in range(self.num_cols):
         #         print (self.seats[j][i])
 
-        pass
 
