@@ -53,17 +53,23 @@ print(sorted(results_list,key=itemgetter(1),reverse=True))
 
 def createRankedTouple(ipAddress, count):
     mytuple = ()
+    test_count_0to50 = 0
     if (count > 0 and count <= 50):
         mytuple = ('0 < x <= 50', ipAddress)
-    if (count > 50 and count <= 100):
+        return mytuple
+    elif (count > 50 and count <= 100):
         mytuple = ('50 < x <= 100', ipAddress)
-    if (count > 100 and count <= 150):
+        return mytuple
+    elif (count > 100 and count <= 150):
         mytuple = ('100 < x <= 150', ipAddress)
-    if (count > 150 and count <= 200):
+        return mytuple
+    elif (count > 150 and count <= 200):
         mytuple = ('150 < x <= 200', ipAddress)
-    if (count > 200 and count <= 250):
+        return mytuple
+    elif (count > 200 and count <= 250):
         mytuple = ('200 < x <= 250', ipAddress)
-    return mytuple
+    else:
+        return None
 
 
 
@@ -82,8 +88,41 @@ def searchForAttackDistribution():
             ipList.append(ipAddress[0])
     ipWithoutDuplicates = list(set(ipList))
     attackList = []
+    countAttacks = []
+    zerotofifty = 0 
+    fiftytohun = 0
+    huntoonefifty = 0
+    onefiftytotwohun = 0
+    twohuntotwofifty = 0 
     for k in ipWithoutDuplicates:
         attackList.append(createRankedTouple(k, ipList.count(k)))
-    return attackList       
-# the sort is only missing    
-print(searchForAttackDistribution())
+    
+    for x in attackList:
+        if x[0] == "0 < x <= 50":
+            zerotofifty += 1
+        elif x[0] == "50 < x <= 100":
+            fiftytohun += 1
+        elif x[0] == "100 < x <= 150":
+            huntoonefifty += 1
+        elif x[0] == "150 < x <= 200":
+            onefiftytotwohun += 1
+        elif x[0] == "200 < x <= 250":
+            twohuntotwofifty += 1
+    
+    tuple1 = ("0 < x <= 50", zerotofifty)
+    tuple5 = ("100 < x <= 150", huntoonefifty)
+    tuple2 = ("100 < x <= 150", huntoonefifty)
+    tuple3 = ("150 < x <= 200", onefiftytotwohun)
+    tuple4 = ("200 < x <= 250", twohuntotwofifty)
+    countAttacks.append(tuple1)
+    countAttacks.append(tuple2)
+    countAttacks.append(tuple3)
+    countAttacks.append(tuple4)
+    countAttacks.append(tuple5)
+
+
+    return countAttacks    
+# sorted    
+# results_list2 = []
+results_list2 = searchForAttackDistribution()
+print(sorted(results_list2,key=itemgetter(1),reverse=True))
