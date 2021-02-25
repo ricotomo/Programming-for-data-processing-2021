@@ -9,7 +9,7 @@ text = []
 #set system path
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-#open text file and save as string obj
+#open text file and save as string obj4e
 with open(os.path.join(__location__, './messages_syslog_class.txt')) as f:
     for x in f:
         text.append(f.readline())
@@ -128,10 +128,20 @@ results_list2 = searchForAttackDistribution()
 print(sorted(results_list2,key=itemgetter(1),reverse=True))
 
 
+# Exercise 3
 
+
+# main function for exercise 3
+def rank_failure():
+    pattern = re.compile(r'Invalid user .* from (\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})')
+
+    for each in text:
+        ip = re.search(pattern, each)
+        if ip:
+            ips.append(ip.group(1))
+    return Counter(ips).most_common()
 
 # Exercise 4
-
 def GetReverseRank():
 
     path="messages_syslog_class.txt"
