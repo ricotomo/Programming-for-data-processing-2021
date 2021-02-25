@@ -126,3 +126,94 @@ def searchForAttackDistribution():
 # results_list2 = []
 results_list2 = searchForAttackDistribution()
 print(sorted(results_list2,key=itemgetter(1),reverse=True))
+
+
+
+
+# Exercise 4
+
+def GetReverseRank():
+
+    path="messages_syslog_class.txt"
+    file=open(path,'r')
+    text=[]
+    if file:
+        for line in file:
+            text.append(line)
+
+
+    #regex to find
+    pattern=re.compile(r'Failed password for invalid user|Failed password|Invalid user?')
+    result=list(filter(pattern.findall,text))
+
+
+    pattern=re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}[^0-9]")
+    IPData=[]
+    for line in result:
+        IPResult=pattern.search(line)
+        IPData.append(IPResult.group(0))
+
+    IPWiseData=[]  #getting all IPS
+    IPData=set(IPData)
+    IPDataSet=IPData
+    for IP in IPData:
+        data=[]
+        for r in result:
+            if IP in r:
+                data.append(r)
+        IPWiseData.append(data)
+
+
+    AvgList=[]
+    for IPData in IPWiseData:
+        count=0
+        sum=0
+        for index in range(len(IPData)-1):
+            tokensOne=IPData[index].split(" ")
+            tokensTwo = IPData[index+1].split(" ")
+
+            #first time
+            startTime=tokensOne[2]
+            #second time
+            endTime=tokensTwo[2]
+
+
+            from datetime import datetime
+
+            date_time_obj1 = datetime.strptime(startTime, '%H:%M:%S')
+            date_time_obj2 = datetime.strptime(endTime, '%H:%M:%S')
+
+            date_time_obj1=date_time_obj1.second+date_time_obj1.minute*60+date_time_obj1.hour*3600
+            date_time_obj2 = date_time_obj2.second + date_time_obj2.minute * 60 + date_time_obj2.hour * 3600
+
+            count+=1
+
+            total_seconds = int(date_time_obj2)-int(date_time_obj1)
+            #print(total_seconds)
+            sum+=(total_seconds)
+            #sum+=int(date_time_obj2-date_time_obj1)
+
+        #print(sum,count)
+        if(sum!=0 and count!=0):
+            if(sum<0):
+                sum=sum*-1
+            AvgList.append(sum//count)
+
+    IPDataSet=list(IPDataSet)
+
+    finalResult=[]
+    for index in range(len(AvgList)):
+        finalResult.append((IPDataSet[index],AvgList[index]))
+
+    #sorting
+    AvgList.sort()
+    final=[]
+    #print(AvgList)
+    for e in AvgList:
+        for x in finalResult:
+            if(x[1]==e):
+                final.append((x[0],x[1]))
+                break;
+    return (final)
+
+print(GetReverseRank())
