@@ -15,17 +15,28 @@ file = codecs.open((os.path.join(__location__, './Solomon_Kullback.html')), "r",
 text = file.read()
 
 # The number of article published.
-#class="entry article toc"
 #itemtype="http://schema.org/ScholarlyArticle"
-#  len(re. findall(pattern, string))
+#title="Journal Articles"
+#class="nr"
 
 #function which returns the number of article published.
 def searchArticles(text):
-    pattern = re.compile(r'itemtype="http://schema.org/ScholarlyArticle"', re.IGNORECASE)
+    pattern = re.compile(r'title="Journal Articles"', re.IGNORECASE)
     result = len(re.findall(pattern, text))
     return result
 
 print("The number of articles published is " + str(searchArticles(text)))
+
 # The number of proceedings published.
+#itemtype="http://schema.org/BookSeries"
+#title="Parts in Books or Collections"
+#Because this researcher doesnt have proceedings we used books
+def searchBooks(text):
+    pattern1 = re.compile(r'title="Parts in Books or Collections"', re.IGNORECASE)
+    result = len(re.findall(pattern1, text))
+    return result
+
+print("The number of books published is " + str(searchBooks(text)))
+
 # The list of ids of the articles.The list of ids of the proceedings.
 # The name of the publications.IThe authors of each publications
