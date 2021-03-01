@@ -15,7 +15,6 @@ file = codecs.open((os.path.join(__location__, './Solomon_Kullback.html')), "r",
 text = file.read()
 
 # The number of article published.
-#itemtype="http://schema.org/ScholarlyArticle"
 #title="Journal Articles"
 #class="nr"
 
@@ -28,7 +27,6 @@ def searchArticles(text):
 print("The number of articles published is " + str(searchArticles(text)))
 
 # The number of proceedings published.
-#itemtype="http://schema.org/BookSeries"
 #title="Parts in Books or Collections"
 #Because this researcher doesnt have proceedings we used books
 def searchBooks(text):
@@ -39,4 +37,36 @@ def searchBooks(text):
 print("The number of books published is " + str(searchBooks(text)))
 
 # The list of ids of the articles.The list of ids of the proceedings.
-# The name of the publications.IThe authors of each publications
+# The name of the publications.
+#<span itemprop="name"> IEEE Trans. Ind. Theory</span>
+#rft.jtitle=Cryptologia&amp;
+#<span class="title" itemprop="name">Looking Back.</span> 
+#"<span(.*?)</span>"
+
+
+
+# # The authors of each publications
+# #"<span itemprop="author" itemscope="" itemtype="http://schema.org/Person"><span class="this-person" itemprop="name">Solomon Kullback</span></span
+# # for (String s: data.split("(?<=[0-9])(?=[a-zA-Z])"))
+# #     System.out.println(s);
+
+# #regexr.com/5nijj
+
+# def authorsOfPubs(text):
+#     patternArticles = re.compile(r'title="Journal Articles"', re.IGNORECASE)
+#     # patternAuthor = re.compile(r'itemprop="author">', re.IGNORECASE)
+#     patternAuthor = re.compile(r'(?<=itemprop="author">)(.*)(?=\</span>)', re.IGNORECASE)
+#     result = []
+#     #when splitting the regex token is not saved in either string
+#     journalTokens = re.split(patternArticles, text)
+#     for x in journalTokens:
+#         # numofAuthors = len(re.findall(patternAuthor, text))
+#         # journalTokens = re.split(patternAuthor, text)
+#         authors = re.findall(patternAuthor, x)
+#         result.append(authors)
+#     return result
+
+# listOfTokens = authorsOfPubs(text)
+
+# for x in listOfTokens:
+#     print("\n here is the next token \n" +str(x))
