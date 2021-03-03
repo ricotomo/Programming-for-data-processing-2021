@@ -21,6 +21,13 @@ stars = ["*", "***", "*****", "*******" ]
 for x in stars:
     print(x)
 
+# stars2 = ""
+# maxstars2 = int(7)
+# for x in maxstars2:
+#     if x%2 != 0:
+        
+
+
 #Write a program that calculates the area of a circle fromthe radius. The radius will be an integer read in from thekeyboard. 
 #You will need to use the constantmath.pi(import math)
 
