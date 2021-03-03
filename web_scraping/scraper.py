@@ -1,43 +1,60 @@
 from lxml import html
 import requests
-from google_play_scraper import app, Sort, reviews
+#from google_play_scraper import app, Sort, reviews
+from  selenium  import  webdriver
+from selenium.webdriver.chrome.options import Options
 
-#static 
-headers = {
-    'User -Agent': "Chrome /87.0.4280.66" }
-#'User -Agent': "Mozilla /5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit /537.36 (KHTML , like  Gecko) Chrome /87.0.4280.66  Safari /537.36" 
-url = "https://www.google.com/"
+import time
 
-# Perform  the web  request  to  obtain  the  resource (i.e. HTML)
-page = requests.get(url , headers=headers)
-# Check  HTTP  return  code is OK
-if page.status_code  == 200:
-    # Returns a HTML  document (tree) from a string
-    tree = html.fromstring(page.content)
-    # Perform  the  XPath  query  for  extracting  the  single  web  title
-    result = tree.xpath("/html/head/title/text()")
-    # XPath  query  returns a list , but we know it  should  contain 1 elem
-    assert(len(result) == 1)
-    # Get the  first (and  only) element
-    data = result [0]
-    # Print  the  page  title
-    print(data)
+# #static 
+# headers = {
+#     'User -Agent': "Chrome /87.0.4280.66" }
+# #'User -Agent': "Mozilla /5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit /537.36 (KHTML , like  Gecko) Chrome /87.0.4280.66  Safari /537.36" 
+# url = "https://www.google.com/"
 
-url2 = "https://fnd.io/#/de/iphone-app/1377689068-tomorrow-mobile-banking-by-tomorrow-gmbh"
+# # Perform  the web  request  to  obtain  the  resource (i.e. HTML)
+# page = requests.get(url , headers=headers)
+# # Check  HTTP  return  code is OK
+# if page.status_code  == 200:
+#     # Returns a HTML  document (tree) from a string
+#     tree = html.fromstring(page.content)
+#     # Perform  the  XPath  query  for  extracting  the  single  web  title
+#     result = tree.xpath("/html/head/title/text()")
+#     # XPath  query  returns a list , but we know it  should  contain 1 elem
+#     assert(len(result) == 1)
+#     # Get the  first (and  only) element
+#     data = result [0]
+#     # Print  the  page  title
+#     print(data)
 
-# Perform  the web  request  to  obtain  the  resource (i.e. HTML)
-page = requests.get(url2, headers=headers)
-# Check  HTTP  return  code is OK
-if page.status_code  == 200:
-    # Returns a HTML  document (tree) from a string
-    tree = html.fromstring(page.content)
-    print(page.content)
-    # Perform  the  XPath  query  for  extracting  the  single  web  title
-    result = tree.xpath("//div[contains(concat(' ', normalize-space(@class), ' '), 'ii-review-content')]")
-    # Get the  first 10 elements
-    data = result [:10]
-    # Print  the  page  title
-    print(data)
+# url2 = "https://fnd.io/#/de/iphone-app/1377689068-tomorrow-mobile-banking-by-tomorrow-gmbh"
+
+# # Perform  the web  request  to  obtain  the  resource (i.e. HTML)
+# page = requests.get(url2, headers=headers)
+# # Check  HTTP  return  code is OK
+# if page.status_code  == 200:
+#     # Returns a HTML  document (tree) from a string
+#     tree = html.fromstring(page.content)
+#     print(page.content)
+#     # Perform  the  XPath  query  for  extracting  the  single  web  title
+#     result = tree.xpath("//div[contains(concat(' ', normalize-space(@class), ' '), 'ii-review-content')]")
+#     # Get the  first 10 elements
+#     data = result [:10]
+#     # Print  the  page  title
+#     print(data)
+
+
+#dynamic
+webdriver.Chrome(executable_path=r'C:\Users\morit\Downloads\chromedriver.exe')
+webdriver_options = Options()
+webdriver_options.add_argument('--headless')
+webdriver_options.add_argument('--no-sandbox')
+webdriver_options.add_argument('--disable-dev-shm-usage')
+with webdriver.Chrome (
+    options = webdriver_options) as driver :
+        driver.get ("http://pythonscraping.com/pages/javascript/ajaxDemo.html")
+        time.sleep(1)
+        print(driver.find_element_by_id("content").text)
 
 
 #Google play scraping
@@ -65,4 +82,3 @@ if page.status_code  == 200:
 #https://play.google.com/store/apps/details?id=one.tomorrow.app&showAllReviews=true
 
 
-#dynamic
