@@ -1,10 +1,43 @@
 from lxml import html
-import requests
-#from google_play_scraper import app, Sort, reviews
-from  selenium  import  webdriver
-from selenium.webdriver.chrome.options import Options
-
 import time
+import requests
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
+
+
+#get webpage
+driver.get("https://www.investing.com/etfs/ishares-global-corporate-bond-$")
+#set timer to 3 seconds in case there is a  delay in loading
+time.sleep (3)
+
+try:
+#click "Historical Data" 
+#<ul id="pairSublinksLevel2" class="arial_12 newBigSubTabs "> followed by two <li>s the second <li> is the one we need with the <a> tag inside
+#click claendar Icon
+#set timeframe (can be changed using the input text fields Start Date and End Date).. Need to set 01/01/2020and12/31/2020, both inclusive.
+#click button apply
+#page is updated - set timer?
+#extract info from HTML Table. Need only date and info in column price. All else can be discarded
+#store info in csv format
+#finish up by closing driver connection
+driver.close()
+
+
+
+
+
+
+# from selenium.webdriver.chrome.options import Options
+# driver = webdriver.Chrome(executable_path='C:/Users/morit/downloads/chromedriver.exe')
+
+
 
 # #static 
 # headers = {
@@ -45,16 +78,17 @@ import time
 
 
 #dynamic
-webdriver.Chrome(executable_path=r'C:\Users\morit\Downloads\chromedriver.exe')
-webdriver_options = Options()
-webdriver_options.add_argument('--headless')
-webdriver_options.add_argument('--no-sandbox')
-webdriver_options.add_argument('--disable-dev-shm-usage')
-with webdriver.Chrome (
-    options = webdriver_options) as driver :
-        driver.get ("http://pythonscraping.com/pages/javascript/ajaxDemo.html")
-        time.sleep(1)
-        print(driver.find_element_by_id("content").text)
+# webdriver.Chrome(executable_path=r'C:\Users\morit\Downloads\chromedriver.exe')
+# driver = webdriver.Chrome(executable_path='C:/Users/morit/downloads/chromedriver.exe')
+# webdriver_options = Options()
+# webdriver_options.add_argument('--headless')
+# webdriver_options.add_argument('--no-sandbox')
+# webdriver_options.add_argument('--disable-dev-shm-usage')
+# with driver (
+#     options = webdriver_options) as driver :
+#         driver.get ("http://pythonscraping.com/pages/javascript/ajaxDemo.html")
+#         time.sleep(1)
+#         print(driver.find_element_by_id("content").text)
 
 
 #Google play scraping
