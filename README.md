@@ -1,8 +1,11 @@
 # Programming-for-data-processing-2021
-##About
+
+## About
 
 This repo is for the final project of our 2021 programming for data processing course at the UPM
-##Problem Statement
+
+
+## Problem Statement
 Smallville Asset Management (or SAM in abbreviated form) is an investment advice firm,
 that wants to improve their advice services provided to their customers, mainly individual
 investors. SAM managers tasks mainly consist of defining the type of financial assets a customer
@@ -20,6 +23,6 @@ the past, taking into account the previous behaviour (e.g. price evolution) of t
 included in the investment strategy. For that reason, managers at SAM have selected the different
 assets they daily work with. Main aspects of these assets are described in following section.
 
-##Tech
+## Tech
 * Python
 * Pandas
